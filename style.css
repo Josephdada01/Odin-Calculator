@@ -18,6 +18,26 @@ body{
     padding: 20px;
     height: 400px;
 }
+.cal-display {
+    background-color: #112c1b;
+    color: #ccc;
+    text-align: right;
+    padding: 40px;
+    width: 200px;
+    font-size: 2em;
+    height: 0.5em;
+    margin-top: 70px;
+}
+/*.cal-display {
+    border-radius: 12px;
+    box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.15);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    max-width: 15em;
+    overflow: hidden;
+    background-color: black;
+}*/
 .calculator-keys-0,
 .calculator-keys-1,
 .calculator-keys-2,
@@ -37,6 +57,8 @@ button {
     cursor: pointer;
     transition: background-color 0.1s ease;
     /*background-color: transparent;*/
+    color: #ccc;
+    background-color: #112c1b;
 }
 button:hover{
     opacity: 0.8;

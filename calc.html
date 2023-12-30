@@ -5,9 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculator</title>
   <link rel="stylesheet" href="style.css">
+  
 </head>
 <body>
     <div class="flex-container">
+        <div class="calculator-screen">
+            <div class="cal-display" id="calculator-display">0</div>
+        </div>
         <div class="calculator-keys-0">
             <button class="key-operators" action="add">+</button>
             <button class="key-operators" action="sub">-</button>
@@ -33,8 +37,9 @@
             <button>0</button>
             <button action="decimal">.</button>
             <button action="clear">AC</button>
-            <button class="key--equal" action="sum-up">=</button>
+            <button class="key--equal" action="sum-up">=</button>       
         </div>
+        <script src="calc.js"></script>    
     </div>
 </body>
 </html>
