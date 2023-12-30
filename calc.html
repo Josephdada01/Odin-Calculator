@@ -9,22 +9,20 @@
 </head>
 <body>
     <div class="flex-container">
-        <div class="calculator-screen">
-            <div class="cal-display" id="calculator-display">0</div>
-        </div>
+        <div class="cal-display" id="calculator-display">0</div>
         <div class="calculator-keys-0">
-            <button class="key-operators" action="add">+</button>
-            <button class="key-operators" action="sub">-</button>
-            <button class="key-operators" action="multiply">X</button>
-            <button class="key-operators" action="divide">/</button>
-            <button class="key-operators" action="percentage">%</button>
+            <button class="key-operators" data-usage="add">+</button>
+            <button class="key-operators" data-usage="sub">-</button>
+            <button class="key-operators" data-usage="multiply">X</button>
+            <button class="key-operators" data-usage="divide">/</button>
+            <button class="key-operators" data-usage="percentage">%</button>
         </div>
         <div class="calculator-keys-1">    
             <button>7</button>
             <button>8</button>
             <button>9</button>
             <button>4</button>
-            <button class="key-operators" action="plus-or-minus">+/-</button>
+            <button class="key-operators" data-usage="plus-or-minus">+/-</button>
         </div>
         <div class="calculator-keys-2">
             <button>5</button>
@@ -35,9 +33,9 @@
         </div>
         <div class="calculator-keys-3">
             <button>0</button>
-            <button action="decimal">.</button>
-            <button action="clear">AC</button>
-            <button class="key--equal" action="sum-up">=</button>       
+            <button data-usage="decimal">.</button>
+            <button data-usage="clear">AC</button>
+            <button class="key--equal" data-usage="sum-up">=</button>       
         </div>
         <script src="calc.js"></script>    
     </div>
