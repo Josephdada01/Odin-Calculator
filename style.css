@@ -67,3 +67,14 @@ button:hover{
     padding-right: 33px;
 }
 
+.cal-display {
+    /* Set display to fit within the calculator */
+    width: 19%;
+    overflow-x: auto; /* Enable horizontal scrolling */
+  }
+  
+  .display-content {
+    white-space: nowrap; /* Prevent text wrapping */
+  }
+  
+
