@@ -40,7 +40,7 @@ function evaluateExpression(expression) {
 }
 
 // Function to handle equal button click
-equalsButton.addEventListener('click', () => {
+/*equalsButton.addEventListener('click', () => {
     let currentExpression = calculatorDisplay.textContent;
     const regex = /(\d+\.?\d*)([+\-X/])(\d+\.?\d*)/;
     const match = currentExpression.match(regex);
@@ -54,10 +54,10 @@ equalsButton.addEventListener('click', () => {
             calculatorDisplay.textContent = 'Error';
         }
     }
-});
+});*/
 
 // Function to perform calculation based on operator and numbers
-function calculateResult(num1, operator, num2) {
+/*function calculateResult(num1, operator, num2) {
     switch (operator) {
         case '+':
             return num1 + num2;
@@ -72,7 +72,48 @@ function calculateResult(num1, operator, num2) {
         default:
             return undefined;
     }
-}
+}*/
+
+equalsButton.addEventListener('click', () => {
+    let currentExpression = calculatorDisplay.textContent;
+
+    // Split the expression using regular expression to handle multiple operators
+    const operators = currentExpression.split(/[\d.]+/).filter(op => op); // Extract operators
+    const numbers = currentExpression.split(/[+\-X/]/).map(parseFloat); // Extract numbers
+
+    let result = numbers[0]; // Initialize result with the first number
+    let percentageIndex = operators.findIndex(op => op === '%'); // Find the index of '%'
+
+    // If percentage (%) operator exists and it's not the last operator
+    if (percentageIndex !== -1 && percentageIndex !== operators.length - 1) {
+        const prevNumber = numbers[percentageIndex]; // Number before the percentage
+        const nextNumber = numbers[percentageIndex + 1]; // Number after the percentage
+        result = prevNumber * (nextNumber / 100); // Calculate the percentage
+    } else {
+        operators.forEach((operator, index) => {
+            switch (operator) {
+                case '+':
+                    result += numbers[index + 1];
+                    break;
+                case '-':
+                    result -= numbers[index + 1];
+                    break;
+                case 'X':
+                    result *= numbers[index + 1];
+                    break;
+                case '/':
+                    result /= numbers[index + 1];
+                    break;
+                default:
+                    break;
+            }
+        });
+    }
+
+    calculatorDisplay.textContent = result.toString();
+});
+
+
 
 // Add event listener to clear button
 clearButton.addEventListener('click', () => {
