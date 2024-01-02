@@ -75,21 +75,28 @@ function evaluateExpression(expression) {
 }*/
 
 equalsButton.addEventListener('click', () => {
-    let currentExpression = calculatorDisplay.textContent;
+    let currentExpression = calculatorDisplay.textContent.trim(); // Trim any extra spaces
+    let result = 0; // Initialize result variable
 
     // Split the expression using regular expression to handle multiple operators
     const operators = currentExpression.split(/[\d.]+/).filter(op => op); // Extract operators
     const numbers = currentExpression.split(/[+\-X/]/).map(parseFloat); // Extract numbers
+    
+    // Remove empty strings resulting from split (due to starting with a negative number)
+    const filteredNumbers = numbers.filter(n => n !== '');
 
-    let result = numbers[0]; // Initialize result with the first number
-    let percentageIndex = operators.findIndex(op => op === '%'); // Find the index of '%'
-
-    // If percentage (%) operator exists and it's not the last operator
-    if (percentageIndex !== -1 && percentageIndex !== operators.length - 1) {
-        const prevNumber = numbers[percentageIndex]; // Number before the percentage
-        const nextNumber = numbers[percentageIndex + 1]; // Number after the percentage
-        result = prevNumber * (nextNumber / 100); // Calculate the percentage
+    
+    // Check if the expression contains '%' operator
+    if (operators.includes('%')) {
+        const indexOfPercentage = operators.indexOf('%');
+        const numBeforePercentage = numbers[indexOfPercentage]; // Number before the '%'
+        result = numBeforePercentage / 100; // Calculate the percentage value
+        numbers.splice(indexOfPercentage, 1); // Remove the number before the '%'
+        operators.splice(indexOfPercentage, 1); // Remove the '%' operator
     } else {
+        // Perform other arithmetic operations if '%' operator is not present
+        result = numbers[0]; // Initialize result with the first number
+
         operators.forEach((operator, index) => {
             switch (operator) {
                 case '+':
@@ -112,6 +119,8 @@ equalsButton.addEventListener('click', () => {
 
     calculatorDisplay.textContent = result.toString();
 });
+
+
 
 
 

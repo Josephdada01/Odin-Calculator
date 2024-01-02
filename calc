@@ -179,3 +179,12 @@ if (currentDisplay.length < MAX_DISPLAY_LENGTH) {
 
 // Function to handle number and operator button clicks
 
+equalsButton.addEventListener('click', () => {
+    let currentExpression = calculatorDisplay.textContent;
+
+    // Split the expression using regular expression to handle multiple operators
+    const operators = currentExpression.split(/[\d.]+/).filter(op => op); // Extract operators
+    const numbers = currentExpression.split(/[+\-X/]/).map(parseFloat); // Extract numbers
+
+    let result = numbers[0]; // Initialize result with the first number
+    let percentageIndex = operators.findIndex(op => op === '%'); // Find the index of '%'
