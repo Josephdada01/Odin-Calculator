@@ -80,47 +80,45 @@ equalsButton.addEventListener('click', () => {
 
     // Split the expression using regular expression to handle multiple operators
     const operators = currentExpression.split(/[\d.]+/).filter(op => op); // Extract operators
-    const numbers = currentExpression.split(/[+\-X/]/).map(parseFloat); // Extract numbers
-    
+    const numbers = currentExpression.split(/[+\-X/]/); // Extract numbers
+
     // Remove empty strings resulting from split (due to starting with a negative number)
     const filteredNumbers = numbers.filter(n => n !== '');
 
-    
     // Check if the expression contains '%' operator
     if (operators.includes('%')) {
         const indexOfPercentage = operators.indexOf('%');
-        const numBeforePercentage = numbers[indexOfPercentage]; // Number before the '%'
+        const numBeforePercentage = filteredNumbers[indexOfPercentage]; // Number before the '%'
         result = numBeforePercentage / 100; // Calculate the percentage value
         numbers.splice(indexOfPercentage, 1); // Remove the number before the '%'
         operators.splice(indexOfPercentage, 1); // Remove the '%' operator
     } else {
         // Perform other arithmetic operations if '%' operator is not present
-        result = numbers[0]; // Initialize result with the first number
+        result = parseFloat(filteredNumbers[0]); // Initialize result with the first number
 
-        operators.forEach((operator, index) => {
-            switch (operator) {
+        for (let i = 0; i < operators.length; i++) {
+            const num = parseFloat(filteredNumbers[i + 1]);
+            switch (operators[i]) {
                 case '+':
-                    result += numbers[index + 1];
+                    result += num;
                     break;
                 case '-':
-                    result -= numbers[index + 1];
+                    result -= num;
                     break;
                 case 'X':
-                    result *= numbers[index + 1];
+                    result *= num;
                     break;
                 case '/':
-                    result /= numbers[index + 1];
+                    result /= num;
                     break;
                 default:
                     break;
             }
-        });
+        }
     }
 
     calculatorDisplay.textContent = result.toString();
 });
-
-
 
 
 
